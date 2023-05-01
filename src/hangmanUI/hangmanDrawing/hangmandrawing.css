@@ -16,7 +16,7 @@
     margin-left: 120px;
 }
 .stand{
-    height: 400px;
+    height: 336px;
     width: 10px;
     background: black;
     margin-left: 120px;
@@ -37,7 +37,7 @@
 }
 .hangedBody{
     width: 10px;
-    height: 121px;
+    height: 105px;
     background: black;
     position: absolute;
     top:97px;
@@ -48,7 +48,7 @@
     height: 10px;
     background: black;
     position: absolute;
-    top: 150px;
+    top: 135px;
     right: -100px;
     rotate: -30deg;
     transform-origin: left bottom;
@@ -58,7 +58,7 @@
     height: 10px;
     background: black;
     position: absolute;
-    top: 150px;
+    top: 135px;
     right: 10px;
     rotate: 30deg;
     transform-origin: right bottom ;
@@ -68,7 +68,7 @@
     height: 10px;
     background: black;
     position: absolute;
-    top: 209px;
+    top: 193px;
     right: 0;
     rotate: -60deg;
     transform-origin: right bottom;
@@ -78,7 +78,7 @@
     height: 10px;
     background: black;
     position: absolute;
-    top: 209px;
+    top: 193px;
     right: -90px;
     rotate: 60deg;
     transform-origin: left bottom;

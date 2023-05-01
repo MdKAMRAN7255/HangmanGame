@@ -1,18 +1,18 @@
 import React, { useEffect, useState, useCallback } from "react";
 import words from "./wordList.json";
 import "./index.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import 'bootstrap/dist/js/bootstrap.bundle.min';
 import HangmanDrawing from "./hangmanDrawing/hangmandrawing";
 import HangmanWord from "./GuessedWord/hangmanWord";
 import Keyboard from "./hangmanKeyboard/keyboard";
+import { Console } from "console";
 function getWord() {
   return words[Math.floor(Math.random() * words.length)];
 }
 
 function Index() {
   const [wordToGuess, setWordToGuess] = useState(getWord);
-  // console.log(wordToGuess);
+
+  const [hiddenWord, sethiddenWord] = useState<string>("")
 
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
 
@@ -38,14 +38,12 @@ function Index() {
   useEffect(() => {
     const wordArray = wordToGuess.split("");
     let wordHint =
-      wordToGuess.length <= 5
+      wordToGuess.length <= 6
         ? Math.floor(wordToGuess.length / 2)
-        : Math.floor(wordToGuess.length / 2) - 1;
+        : Math.floor(wordToGuess.length / 2);
     const hiddenLetters: number[] = [];
-    
-    console.log(wordHint, "w")
 
-    // Replace a certain number of characters with underscores
+
     const numHiddenLetters = wordToGuess.length - wordHint;
     for (let i = 0; i < numHiddenLetters; i++) {
       let randomIndex = Math.floor(Math.random() * wordArray.length);
@@ -58,11 +56,11 @@ function Index() {
       hiddenLetters.push(randomIndex);
       wordArray[randomIndex] = "_";
     }
+
+     sethiddenWord(wordArray.join(" "));
     
-    const hiddenWord = wordArray.join(" ");
-    console.log(hiddenWord);
   }, [wordToGuess]);
-  
+  console.log(hiddenWord, "hiddenWord");
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -76,6 +74,8 @@ function Index() {
 
     return () => {
       document.removeEventListener("keypress", handler);
+      
+      
     };
   }, [guessedLetters]);
   return (
@@ -86,13 +86,13 @@ function Index() {
             <span className="guess">
               Guess the correct word
               <button
-  type="button"
-  className="hintButton"
-  data-toggle="modal"
-  data-target="#exampleModal"
->
-  Hint
-</button>
+                type="button"
+                className="hintButton"
+                data-bs-toggle="modal" 
+                data-bs-target="#exampleModal"
+              >
+                Hint
+              </button>
 
             </span>
           )}
@@ -125,22 +125,17 @@ function Index() {
         </div>
       </div>
 
-      <div className="modal fade" id="exampleModal" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div className="modal-dialog" role="document">
+      <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div className="modal-dialog">
     <div className="modal-content">
       <div className="modal-header">
-        <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <h1 className="modal-title fs-5" id="exampleModalLabel">Word To Guess</h1>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div className="modal-body">
-        ...
+      <div className="modal-body text-center">
+        <span className="display-3">{hiddenWord}</span>
       </div>
-      <div className="modal-footer">
-        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" className="btn btn-primary">Save changes</button>
-      </div>
+      
     </div>
   </div>
 </div>
