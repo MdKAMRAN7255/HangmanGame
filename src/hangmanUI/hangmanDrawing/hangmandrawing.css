@@ -30,7 +30,7 @@
     width: 50px;
     height: 50px;
     border-radius: 100%;
-    border: 10px solid black;
+    border: 10px solid red;
     position: absolute;
     top: 49px;
     right: -20px;
@@ -38,7 +38,7 @@
 .hangedBody{
     width: 10px;
     height: 105px;
-    background: black;
+    background: red;
     position: absolute;
     top:97px;
     right: 0 ;
@@ -46,7 +46,7 @@
 .right_arm{
     width: 100px;
     height: 10px;
-    background: black;
+    background: red;
     position: absolute;
     top: 135px;
     right: -100px;
@@ -56,7 +56,7 @@
 .left_arm{
     width: 100px;
     height: 10px;
-    background: black;
+    background: red;
     position: absolute;
     top: 135px;
     right: 10px;
@@ -66,7 +66,7 @@
 .left_leg{
     width: 100px;
     height: 10px;
-    background: black;
+    background: red;
     position: absolute;
     top: 193px;
     right: 0;
@@ -76,7 +76,7 @@
 .right_leg{
     width: 100px;
     height: 10px;
-    background: black;
+    background: red;
     position: absolute;
     top: 193px;
     right: -90px;

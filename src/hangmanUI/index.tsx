@@ -1,16 +1,25 @@
 import React, { useEffect, useState, useCallback } from "react";
 import words from "./wordList.json";
+import definition from "./wordDefinition.json"
 import "./index.css";
 import HangmanDrawing from "./hangmanDrawing/hangmandrawing";
 import HangmanWord from "./GuessedWord/hangmanWord";
 import Keyboard from "./hangmanKeyboard/keyboard";
-import { Console } from "console";
-function getWord() {
-  return words[Math.floor(Math.random() * words.length)];
+
+interface wordguess{
+  word: string,
+  definition: string
 }
 
+function getWord() {
+  return definition[Math.floor(Math.random() * definition.length)];
+}
+
+
 function Index() {
-  const [wordToGuess, setWordToGuess] = useState(getWord);
+  const [wordObject, setWordObject] = useState<wordguess>(getWord())
+  
+  const [wordToGuess, setWordToGuess] = useState<string>(wordObject.word);
 
   const [hiddenWord, sethiddenWord] = useState<string>("")
 
@@ -57,8 +66,8 @@ function Index() {
       wordArray[randomIndex] = "_";
     }
 
-     sethiddenWord(wordArray.join(" "));
-    
+    sethiddenWord(wordArray.join(" "));
+
   }, [wordToGuess]);
 
   useEffect(() => {
@@ -73,8 +82,8 @@ function Index() {
 
     return () => {
       document.removeEventListener("keypress", handler);
-      
-      
+
+
     };
   }, [guessedLetters]);
   return (
@@ -87,12 +96,17 @@ function Index() {
               <button
                 type="button"
                 className="hintButton"
-                data-bs-toggle="modal" 
+                data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
               >
                 Hint
               </button>
 
+            </span>
+          )}
+          {!isLoser && !isWinner && (
+            <span className="definition">
+              Clue: {wordObject.definition}
             </span>
           )}
           {isWinner && (
@@ -125,19 +139,19 @@ function Index() {
       </div>
 
       <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div className="modal-dialog">
-    <div className="modal-content">
-      <div className="modal-header">
-        <h1 className="modal-title fs-5" id="exampleModalLabel">Word To Guess</h1>
-        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="exampleModalLabel">Word To Guess</h1>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div className="modal-body text-center">
+              <span className="display-3">{hiddenWord}</span>
+            </div>
+
+          </div>
+        </div>
       </div>
-      <div className="modal-body text-center">
-        <span className="display-3">{hiddenWord}</span>
-      </div>
-      
-    </div>
-  </div>
-</div>
     </>
   );
 }
