@@ -1,0 +1,23 @@
+.guessWord{
+    display: flex;
+    gap: 0.25em;
+    font-size: 6rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: monospace;
+}
+.word{
+    border-bottom: 0.1em solid black;
+}
+.visibled{
+    visibility: visible;
+}
+.hiddend{
+    visibility: hidden;
+}
+.redColor{
+    color: red;
+}
+.blackColor{
+    color: black;
+}
