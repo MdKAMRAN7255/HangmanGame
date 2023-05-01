@@ -1,5 +1,6 @@
 ### Hangman word guessing game with hint.
 Link for the app: https://hangman-word-guess-game.netlify.app/
+
 UI of this app.
 ![Screenshot from 2023-05-01 11-24-21](https://user-images.githubusercontent.com/122250114/235413634-ffe20756-de1c-4181-b025-b249f12a3d59.png)
 
