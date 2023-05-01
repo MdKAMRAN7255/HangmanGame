@@ -60,7 +60,6 @@ function Index() {
      sethiddenWord(wordArray.join(" "));
     
   }, [wordToGuess]);
-  console.log(hiddenWord, "hiddenWord");
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
